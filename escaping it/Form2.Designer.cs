@@ -34,6 +34,8 @@
             this.lcount = new System.Windows.Forms.Label();
             this.bflashlight = new System.Windows.Forms.Button();
             this.lname = new System.Windows.Forms.Label();
+            this.bcombine = new System.Windows.Forms.Button();
+            this.bbattery = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bmenu
@@ -55,6 +57,7 @@
             this.listinventory.FormattingEnabled = true;
             this.listinventory.Location = new System.Drawing.Point(12, 214);
             this.listinventory.Name = "listinventory";
+            this.listinventory.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listinventory.Size = new System.Drawing.Size(120, 251);
             this.listinventory.TabIndex = 2;
             this.listinventory.SelectedIndexChanged += new System.EventHandler(this.listinventory_SelectedIndexChanged);
@@ -102,12 +105,34 @@
             this.lname.TabIndex = 6;
             this.lname.Text = " ";
             // 
+            // bcombine
+            // 
+            this.bcombine.Location = new System.Drawing.Point(12, 482);
+            this.bcombine.Name = "bcombine";
+            this.bcombine.Size = new System.Drawing.Size(75, 23);
+            this.bcombine.TabIndex = 7;
+            this.bcombine.Text = "combined";
+            this.bcombine.UseVisualStyleBackColor = true;
+            this.bcombine.Click += new System.EventHandler(this.bcombine_Click);
+            // 
+            // bbattery
+            // 
+            this.bbattery.Location = new System.Drawing.Point(641, 504);
+            this.bbattery.Name = "bbattery";
+            this.bbattery.Size = new System.Drawing.Size(134, 28);
+            this.bbattery.TabIndex = 8;
+            this.bbattery.Text = "battery placehold";
+            this.bbattery.UseVisualStyleBackColor = true;
+            this.bbattery.Click += new System.EventHandler(this.bbattery_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
             this.ClientSize = new System.Drawing.Size(1332, 760);
+            this.Controls.Add(this.bbattery);
+            this.Controls.Add(this.bcombine);
             this.Controls.Add(this.lname);
             this.Controls.Add(this.bflashlight);
             this.Controls.Add(this.lcount);
@@ -129,5 +154,7 @@
         private System.Windows.Forms.Label lcount;
         private System.Windows.Forms.Button bflashlight;
         private System.Windows.Forms.Label lname;
+        private System.Windows.Forms.Button bcombine;
+        private System.Windows.Forms.Button bbattery;
     }
 }

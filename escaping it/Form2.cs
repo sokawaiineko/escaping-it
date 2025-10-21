@@ -24,11 +24,17 @@ namespace escaping_it
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
-            
+            this.FormClosed += Game_FormClosed;
+
+
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
             puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" })); //will be unsolved until a 'key' is acquired later
         }
+        private Item firstCombineItem = null;
+        private bool combineMode = false;
+
+
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             menu.Show();
@@ -51,13 +57,63 @@ namespace escaping_it
             this.Hide();
             menu.Show();
         }
+        private void FlashlightWORKING(Item item1, Item item2)
+        {
+
+            if ((item1.GetName() == "flashlight" && item2.GetName() == "battery") ||
+        (item1.GetName() == "battery" && item2.GetName() == "flashlight"))
+            {
+                inventory.RemoveItem("flashlight");
+                inventory.RemoveItem("battery");
+                Item combined = new Item("working flashlight", "a flashlight with a fresh battery, now usable.");
+                inventory.AddItem(combined);
+                lname.Text = combined.GetName();
+                linfodetail.Text = combined.GetDescription();
+
+                MessageBox.Show("You combined them into a working flashlight!");
+            }
+            else
+            {
+                MessageBox.Show("that doesn’t seem to work...");
+            }
+
+            RefreshInventoryUI();
+        }
+
         private void listinventory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listinventory == null || linfodetail == null) return;
-            if (listinventory.SelectedIndex < 0) { linfodetail.Text = ""; return; }
-            String n = listinventory.SelectedItem.ToString();
+            if (listinventory.SelectedIndex < 0)
+            {
+                lname.Text = "";
+                linfodetail.Text = "";
+                return;
+            }
+
+            string n = listinventory.SelectedItem.ToString();
             Item it = inventory.Find(n);
-            if (it != null) linfodetail.Text = it.GetDescription();
+
+            if (it == null) return;
+
+            
+            lname.Text = it.GetName();
+            linfodetail.Text = it.GetDescription();
+
+            
+            if (combineMode)
+            {
+                if (firstCombineItem == null)
+                {
+                    firstCombineItem = it;
+                    
+                }
+                else
+                {
+                    FlashlightWORKING(firstCombineItem, it);
+                    combineMode = false;
+                    firstCombineItem = null;
+                }
+            }
         }
         private void RefreshInventoryUI()
         {
@@ -84,6 +140,37 @@ namespace escaping_it
                 
                 lname.Text = flashlight.GetName();
                 linfodetail.Text = flashlight.GetDescription();
+            }
+        }
+
+        private void bcombine_Click(object sender, EventArgs e)
+        {
+            if (!combineMode)
+            {
+                combineMode = true;
+                firstCombineItem = null;
+                
+            }
+            else
+            {
+                combineMode = false;
+                firstCombineItem = null;
+                
+            }
+        }
+
+        private void bbattery_Click(object sender, EventArgs e)
+        {
+            if (!inventory.HasItem("battery"))
+            {
+                Item battery = new Item("battery", "a small battery, might power something.");
+                inventory.AddItem(battery);
+
+                bbattery.Visible = false;      
+                RefreshInventoryUI();
+
+                lname.Text = battery.GetName();
+                linfodetail.Text = battery.GetDescription();
             }
         }
     }
