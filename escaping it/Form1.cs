@@ -12,13 +12,15 @@ namespace escaping_it
 {
     public partial class Menu : Form
     {
+        Game game = new Game();
         public Menu()
         {
             InitializeComponent();
             borderless(bplay);
             borderless(bquit);
-
+            
         }
+        //comment
         private void borderless(Button btn)
         {
            
@@ -34,7 +36,7 @@ namespace escaping_it
 
         private void bplay_Click(object sender, EventArgs e)
         {
-            Game game = new Game();
+            
             this.Hide();
             game.Show();
         }
