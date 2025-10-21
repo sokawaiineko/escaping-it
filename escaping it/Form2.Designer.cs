@@ -32,6 +32,8 @@
             this.listinventory = new System.Windows.Forms.ListBox();
             this.linfodetail = new System.Windows.Forms.Label();
             this.lcount = new System.Windows.Forms.Label();
+            this.bflashlight = new System.Windows.Forms.Button();
+            this.lname = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bmenu
@@ -79,12 +81,35 @@
             this.lcount.TabIndex = 4;
             this.lcount.Text = "label1";
             // 
+            // bflashlight
+            // 
+            this.bflashlight.Location = new System.Drawing.Point(101, 577);
+            this.bflashlight.Name = "bflashlight";
+            this.bflashlight.Size = new System.Drawing.Size(144, 35);
+            this.bflashlight.TabIndex = 5;
+            this.bflashlight.Text = "flashlight placehold";
+            this.bflashlight.UseVisualStyleBackColor = true;
+            this.bflashlight.Click += new System.EventHandler(this.bflashlight_Click);
+            // 
+            // lname
+            // 
+            this.lname.AutoSize = true;
+            this.lname.BackColor = System.Drawing.Color.Transparent;
+            this.lname.Font = new System.Drawing.Font("UD Digi Kyokasho NP-B", 10F, System.Drawing.FontStyle.Bold);
+            this.lname.Location = new System.Drawing.Point(638, 18);
+            this.lname.Name = "lname";
+            this.lname.Size = new System.Drawing.Size(11, 16);
+            this.lname.TabIndex = 6;
+            this.lname.Text = " ";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
             this.ClientSize = new System.Drawing.Size(1332, 760);
+            this.Controls.Add(this.lname);
+            this.Controls.Add(this.bflashlight);
             this.Controls.Add(this.lcount);
             this.Controls.Add(this.linfodetail);
             this.Controls.Add(this.listinventory);
@@ -102,5 +127,7 @@
         private System.Windows.Forms.ListBox listinventory;
         private System.Windows.Forms.Label linfodetail;
         private System.Windows.Forms.Label lcount;
+        private System.Windows.Forms.Button bflashlight;
+        private System.Windows.Forms.Label lname;
     }
 }

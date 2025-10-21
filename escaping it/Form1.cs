@@ -12,7 +12,7 @@ namespace escaping_it
 {
     public partial class Menu : Form
     {
-        Game game = new Game();
+        private Game game;
         public Menu()
         {
             InitializeComponent();
@@ -36,14 +36,18 @@ namespace escaping_it
 
         private void bplay_Click(object sender, EventArgs e)
         {
-            
+
+            if (game == null)
+                game = new Game(this); 
+
             this.Hide();
             game.Show();
+
         }
 
         private void bquit_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
     }
 }

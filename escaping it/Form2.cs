@@ -12,21 +12,26 @@ namespace escaping_it
 {
     public partial class Game : Form
     {
-        Menu menu = new Menu();
+        private Menu menu;
         Inventory inventory;
         List<Puzzle> puzzles;
 
-        public Game()
+        public Game(Menu m)
         {
             InitializeComponent();
+            menu = m;
             borderless(bmenu);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
-            //example puzzles for room1
+            
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
             puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" })); //will be unsolved until a 'key' is acquired later
+        }
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menu.Show();
         }
 
         private void borderless(Button btn)
@@ -65,14 +70,22 @@ namespace escaping_it
             if (lcount != null) lcount.Text = $"items: {inventory.GetItems().Count}";
             if (linfodetail != null) linfodetail.Text = "";
         }
-        
-       
 
-        
-        
+        private void bflashlight_Click(object sender, EventArgs e)
+        {
+            if (!inventory.HasItem("flashlight"))
+            {
+                Item flashlight = new Item("flashlight", "a small handheld light, useful for dark places.");
+                inventory.AddItem(flashlight);
 
-        
-        
+                bflashlight.Visible = false;
+                RefreshInventoryUI();
+
+                
+                lname.Text = flashlight.GetName();
+                linfodetail.Text = flashlight.GetDescription();
+            }
+        }
     }
 
     // ----------------------
