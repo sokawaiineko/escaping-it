@@ -15,7 +15,7 @@ namespace escaping_it
         private Menu menu;
         Inventory inventory;
         List<Puzzle> puzzles;
-
+        private Item selectedItem = null;
         public Game(Menu m)
         {
             InitializeComponent();
@@ -25,11 +25,12 @@ namespace escaping_it
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
             this.FormClosed += Game_FormClosed;
+            bkey.Visible = false;
 
 
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
-            puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" })); //will be unsolved until a 'key' is acquired later
+            puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" })); 
         }
         private Item firstCombineItem = null;
         private bool combineMode = false;
@@ -40,16 +41,16 @@ namespace escaping_it
             menu.Show();
         }
 
-        private void borderless(Button btn)
+        private void borderless(Button b)
         {
 
-            btn.TabStop = false;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
-            btn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
-            btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btn.BackColor = Color.Transparent;
+            b.TabStop = false;
+            b.FlatStyle = FlatStyle.Flat;
+            b.FlatAppearance.BorderSize = 0;
+            b.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+            b.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            b.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            b.BackColor = Color.Transparent;
         }
         private void bmenu_Click(object sender, EventArgs e)
         {
@@ -87,19 +88,16 @@ namespace escaping_it
             {
                 lname.Text = "";
                 linfodetail.Text = "";
+                selectedItem = null;
                 return;
             }
-
             string n = listinventory.SelectedItem.ToString();
             Item it = inventory.Find(n);
-
             if (it == null) return;
-
-            
             lname.Text = it.GetName();
             linfodetail.Text = it.GetDescription();
+            selectedItem = it;
 
-            
             if (combineMode)
             {
                 if (firstCombineItem == null)
@@ -173,11 +171,42 @@ namespace escaping_it
                 linfodetail.Text = battery.GetDescription();
             }
         }
+
+        private void bwrench_Click(object sender, EventArgs e)
+        {
+            if (!inventory.HasItem("wrench"))
+            {
+                Item wrench = new Item("wrench", "A simple wrench, a little rust along the edges");
+                inventory.AddItem(wrench);
+
+                bbattery.Visible = false;
+                RefreshInventoryUI();
+
+                lname.Text = wrench.GetName();
+                linfodetail.Text = wrench.GetDescription();
+            }
+        }
+
+        private void bbox_Click(object sender, EventArgs e)
+        {
+            if (!bbox.Enabled) return;
+            
+            if (selectedItem != null && selectedItem.GetName() == "wrench")
+            {
+                
+                // bbox.BackgroundImage = Properties.Resources.openbox;   <--- NEED TO ADD IMAGE
+                bbox.BackgroundImageLayout = ImageLayout.Stretch;
+                bkey.Visible = true;
+                bbox.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("You need a wrench selected to open this box!");
+            }
+        }
     }
 
-    // ----------------------
-    // week1 classes
-    // ----------------------
+    
     class Inventory
     {
         private List<Item> Items = new List<Item>();
