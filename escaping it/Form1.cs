@@ -20,7 +20,7 @@ namespace escaping_it
             borderless(bquit);
             
         }
-        //comment
+        
         private void borderless(Button btn)
         {
            
@@ -38,7 +38,10 @@ namespace escaping_it
         {
 
             if (game == null)
-                game = new Game(this); 
+            {
+                game = new Game(this);
+            }
+                
 
             this.Hide();
             game.Show();

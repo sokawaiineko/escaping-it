@@ -38,7 +38,8 @@ namespace escaping_it
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            menu.Show();
+            
+            menu.Dispose();
         }
 
         private void borderless(Button b)
@@ -75,7 +76,7 @@ namespace escaping_it
             }
             else
             {
-                MessageBox.Show("that doesn’t seem to work...");
+                MessageBox.Show("that doesn’t workr");
             }
 
             RefreshInventoryUI();
@@ -179,7 +180,7 @@ namespace escaping_it
                 Item wrench = new Item("wrench", "A simple wrench, a little rust along the edges");
                 inventory.AddItem(wrench);
 
-                bbattery.Visible = false;
+                bwrench.Visible = false;
                 RefreshInventoryUI();
 
                 lname.Text = wrench.GetName();
@@ -201,152 +202,28 @@ namespace escaping_it
             }
             else
             {
-                MessageBox.Show("You need a wrench selected to open this box!");
+                
             }
         }
+
+        private void bkey_Click(object sender, EventArgs e)
+        {
+            Item key = new Item("key", "An old key");
+            inventory.AddItem(key);
+
+            bkey.Visible = false;
+            RefreshInventoryUI();
+
+            lname.Text = key.GetName();
+            linfodetail.Text = key.GetDescription();
+        }
     }
+
 
     
-    class Inventory
-    {
-        private List<Item> Items = new List<Item>();
 
-        public void AddItem(Item item)
-        {
-            if (item != null) Items.Add(item);
-        }
+    
 
-        public bool RemoveItem(String name)
-        {
-            Item found = null;
-            foreach (Item it in Items)
-            {
-                if (it.GetName() == name) found = it;
-            }
-            if (found != null)
-            {
-                Items.Remove(found);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool HasItem(String name)
-        {
-            foreach (Item it in Items)
-            {
-                if (it.GetName() == name) return true;
-            }
-            return false;
-        }
-
-        public Item Find(String name)
-        {
-            foreach (Item it in Items)
-            {
-                if (it.GetName() == name) return it;
-            }
-            return null;
-        }
-
-        public List<Item> GetItems()
-        {
-            return Items;
-        }
-    }
-
-    class Item
-    {
-        private String Name;
-        private String Description;
-
-        public Item(String name, String description)
-        {
-            Name = name;
-            Description = description;
-        }
-
-        public String GetName()
-        {
-            return Name;
-        }
-        public String GetDescription()
-        {
-            return Description;
-        }
-        public void SetName(String n)
-        {
-            Name = n;
-        }
-        public void SetDescription(String d)
-        {
-            Description = d;
-        }
-    }
-
-    class Puzzle
-    {
-        private String Id;
-        private String Description;
-        private List<String> RequiredItems;
-        private bool Solved;
-
-        public Puzzle(String id, String description, List<String> requiredItems)
-        {
-            Id = id;
-            Description = description;
-            RequiredItems = requiredItems;
-            Solved = false;
-        }
-
-        public String GetId()
-        {
-            return Id;
-        }
-
-        public String GetDescription()
-        {
-            return Description;
-        }
-
-        public bool IsSolved()
-        {
-            return Solved;
-        }
-
-        public bool TrySolve(Inventory inv)
-        {
-            if (Solved) return true;
-            foreach (String r in RequiredItems)
-            {
-                if (!inv.HasItem(r)) return false;
-            }
-            Solved = true;
-            return true;
-        }
-
-        public List<String> MissingItems(Inventory inv)
-        {
-            List<String> miss = new List<String>();
-            foreach (String r in RequiredItems)
-            {
-                if (!inv.HasItem(r)) miss.Add(r);
-            }
-            return miss;
-        }
-
-        public void Reset()
-        {
-            Solved = false;
-        }
-
-        public void SetRequirements(List<String> req)
-        {
-            RequiredItems = req;
-        }
-    }
+    
 
 }

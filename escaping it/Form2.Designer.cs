@@ -168,6 +168,7 @@
             this.bkey.TabIndex = 11;
             this.bkey.Text = "key placehold";
             this.bkey.UseVisualStyleBackColor = true;
+            this.bkey.Click += new System.EventHandler(this.bkey_Click);
             // 
             // Game
             // 
