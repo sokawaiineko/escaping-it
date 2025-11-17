@@ -12,7 +12,7 @@ namespace escaping_it
 {
     public partial class Game : Form
     {
-        private LightsOutForm lights;
+        
         private Menu menu;
 
         Inventory inventory;
