@@ -12,13 +12,16 @@ namespace escaping_it
 {
     public partial class Game : Form
     {
+        private LightsOutForm lights;
         private Menu menu;
+
         Inventory inventory;
         List<Puzzle> puzzles;
         private Item selectedItem = null;
         public Game(Menu m)
         {
             InitializeComponent();
+            
             menu = m;
             borderless(bmenu);
             inventory = new Inventory();
@@ -30,7 +33,8 @@ namespace escaping_it
 
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
-            puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" })); 
+            puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" }));
+            
         }
         private Item firstCombineItem = null;
         private bool combineMode = false;
@@ -216,6 +220,14 @@ namespace escaping_it
 
             lname.Text = key.GetName();
             linfodetail.Text = key.GetDescription();
+        }
+
+        private void blightsout_Click(object sender, EventArgs e)
+        {
+            LightsOutForm lights = new LightsOutForm();
+            blightsout.Enabled = false;
+            lights.ShowDialog();
+            
         }
     }
 

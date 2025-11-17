@@ -39,6 +39,7 @@
             this.bwrench = new System.Windows.Forms.Button();
             this.bbox = new System.Windows.Forms.Button();
             this.bkey = new System.Windows.Forms.Button();
+            this.blightsout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bmenu
@@ -170,12 +171,23 @@
             this.bkey.UseVisualStyleBackColor = true;
             this.bkey.Click += new System.EventHandler(this.bkey_Click);
             // 
+            // blightsout
+            // 
+            this.blightsout.Location = new System.Drawing.Point(1290, 248);
+            this.blightsout.Name = "blightsout";
+            this.blightsout.Size = new System.Drawing.Size(157, 144);
+            this.blightsout.TabIndex = 12;
+            this.blightsout.Text = "button1";
+            this.blightsout.UseVisualStyleBackColor = true;
+            this.blightsout.Click += new System.EventHandler(this.blightsout_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
             this.ClientSize = new System.Drawing.Size(1898, 1024);
+            this.Controls.Add(this.blightsout);
             this.Controls.Add(this.bkey);
             this.Controls.Add(this.bbox);
             this.Controls.Add(this.bwrench);
@@ -208,5 +220,6 @@
         private System.Windows.Forms.Button bwrench;
         private System.Windows.Forms.Button bbox;
         private System.Windows.Forms.Button bkey;
+        private System.Windows.Forms.Button blightsout;
     }
 }
