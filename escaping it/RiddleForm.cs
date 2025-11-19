@@ -25,12 +25,13 @@ namespace escaping_it
         public RiddleForm()
         {
             InitializeComponent();
+            rand = new Random();
             KeyEarned = false;
             riddleCurrently = -1;
             LoadRiddlesFromFile();
             SetupTimer();
             ShowNextRiddle();
-            rand = new Random();
+            
         }
 
         private void LoadRiddlesFromFile()
