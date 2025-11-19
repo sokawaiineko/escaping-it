@@ -24,6 +24,7 @@ namespace escaping_it
             
             menu = m;
             borderless(bmenu);
+            borderless(briddle);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
@@ -33,7 +34,7 @@ namespace escaping_it
 
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
-            puzzles.Add(new Puzzle("locker", "a rusty locker with a keyhole", new List<String> { "key" }));
+            puzzles.Add(new Puzzle("door", "a rusty door with a keyhole", new List<String> { "key" }));
             
         }
         private Item firstCombineItem = null;
@@ -228,6 +229,23 @@ namespace escaping_it
             blightsout.Enabled = false;
             lights.ShowDialog();
             
+        }
+
+        private void briddle_Click(object sender, EventArgs e)
+        {
+            using (RiddleForm riddle = new RiddleForm())
+            {
+                riddle.ShowDialog();
+
+                if (riddle.KeyEarned && !inventory.HasItem("riddle key"))
+                {
+                    Item riddleKey = new Item("riddle key", "A small key earned from solving the riddle.");
+                    inventory.AddItem(riddleKey);
+                    RefreshInventoryUI();
+                    lname.Text = riddleKey.GetName();
+                    linfodetail.Text = riddleKey.GetDescription();
+                }
+            }
         }
     }
 

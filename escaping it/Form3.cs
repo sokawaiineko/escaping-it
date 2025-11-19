@@ -23,6 +23,7 @@ namespace escaping_it
             grid[0, 1] = b01; grid[1, 1] = b11; grid[2, 1] = b21;
             grid[0, 2] = b02; grid[1, 2] = b12; grid[2, 2] = b22;
 
+            //random and then loops around the grid
             Random rng = new Random();
             for (int c = 0; c < 3; c++)
             {
@@ -30,27 +31,20 @@ namespace escaping_it
                 {
                     Button b = grid[c, r];
                     b.Tag = new Point(c, r);
+
                     lights[c, r] = rng.Next(2) == 0;
-                    if (lights[c, r])
-                    {
-                        b.BackColor = Color.Yellow;
-                        b.Text = "ON";
-                    }
-                    else
-                    {
-                        b.BackColor = Color.DimGray;
-                        b.Text = "OFF";
-                    }
+
                     b.FlatStyle = FlatStyle.Flat;
                     b.UseVisualStyleBackColor = false;
                     b.Click += LightsClicked;
                 }
             }
+            UpdateAllVisuals();
         }
         private void LightsClicked(object sender, EventArgs e)
         {
             Button b = sender as Button;
-            if (b == null || b.Tag == null) return;
+            
             Point p = (Point)b.Tag;
             int col = p.X;
             int row = p.Y;
@@ -62,15 +56,18 @@ namespace escaping_it
             if (WinClause())
             {
                 PuzzleSolved = true;
-                MessageBox.Show("Lights Out solved!");
                 this.Close();
             }
 
         }
-        private void Toggle(int c, int r)
+        private void UpdateVisual(int c, int r)
         {
-            if (c < 0 || r < 0 || c >= 3 || r >= 3) return;
-            lights[c, r] = !lights[c, r];
+
+            if (c < 0 || r < 0 || c >= 3 || r >= 3)
+            {
+                return;
+            }
+
             if (lights[c, r])
             {
                 grid[c, r].BackColor = Color.Yellow;
@@ -78,9 +75,30 @@ namespace escaping_it
             }
             else
             {
-                grid[c, r].BackColor = Color.DimGray;
+                grid[c, r].BackColor = Color.DarkGray;
                 grid[c, r].Text = "OFF";
             }
+        }
+        private void UpdateAllVisuals()
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                for (int r = 0; r < 3; r++)
+                {
+                    UpdateVisual(c, r);
+                }
+            }
+        }
+
+        private void Toggle(int c, int r)
+        {
+            if (c < 0 || r < 0 || c >= 3 || r >= 3)
+            {
+                return;
+            }
+
+            lights[c, r] = !lights[c, r];
+            UpdateVisual(c, r);
 
         }
         private bool WinClause()
