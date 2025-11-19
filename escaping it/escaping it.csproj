@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="dark room.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dark room.Designer.cs">
+      <DependentUpon>dark room.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="RiddleForm.Designer.cs">
       <DependentUpon>RiddleForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="dark room.resx">
+      <DependentUpon>dark room.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\room background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="riddles.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

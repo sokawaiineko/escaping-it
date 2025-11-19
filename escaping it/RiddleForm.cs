@@ -15,7 +15,7 @@ namespace escaping_it
     public partial class RiddleForm : Form
     {
         List<Riddle> riddles;
-        int currentRiddleIndex;
+        int riddleCurrently;
         Timer riddleTimer;
         int timeLeft;
 
@@ -25,7 +25,7 @@ namespace escaping_it
         {
             InitializeComponent();
             KeyEarned = false;
-            currentRiddleIndex = -1;
+            riddleCurrently = -1;
             LoadRiddlesFromFile();
             SetupTimer();
             ShowNextRiddle();
@@ -35,7 +35,7 @@ namespace escaping_it
         {
             riddles = new List<Riddle>();
 
-            string path = @"riddles.txt"; 
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "riddles.txt");
 
             if (File.Exists(path))
             {
@@ -88,17 +88,14 @@ namespace escaping_it
         {
             if (riddles == null || riddles.Count == 0)
             {
-                riddleLabel.Text = "No riddles.";
+                riddleLabel.Text = "txt file missing";
                 return;
             }
 
-            currentRiddleIndex++;
-            if (currentRiddleIndex >= riddles.Count)
-            {
-                currentRiddleIndex = 0;
-            }
+            Random rand = new Random();
+            riddleCurrently = rand.Next(riddles.Count);
 
-            Riddle current = riddles[currentRiddleIndex];
+            Riddle current = riddles[riddleCurrently];
             riddleLabel.Text = current.Question;
             answerBox.Text = "";
             StartRiddleTimer();
@@ -107,25 +104,25 @@ namespace escaping_it
         private void CheckAnswer()
         {
             if (riddles == null || riddles.Count == 0) return;
-            if (currentRiddleIndex < 0 || currentRiddleIndex >= riddles.Count) return;
+            if (riddleCurrently < 0 || riddleCurrently >= riddles.Count) return;
 
-            Riddle current = riddles[currentRiddleIndex];
+            Riddle current = riddles[riddleCurrently];
             string userAnswer = answerBox.Text.Trim().ToLower();
 
             if (userAnswer == current.Answer.ToLower())
             {
                 riddleTimer.Stop();
                 KeyEarned = true;
-                MessageBox.Show("Correct! You got the key.");
+                ;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Incorrect, try again.");
+                return;
             }
         }
 
-        
+
         private void bSubmit_Click_1(object sender, EventArgs e)
         {
             CheckAnswer();

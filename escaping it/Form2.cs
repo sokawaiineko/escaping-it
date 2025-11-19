@@ -18,6 +18,7 @@ namespace escaping_it
         Inventory inventory;
         List<Puzzle> puzzles;
         private Item selectedItem = null;
+        bool cipherSolved = false;
         public Game(Menu m)
         {
             InitializeComponent();
@@ -77,7 +78,6 @@ namespace escaping_it
                 lname.Text = combined.GetName();
                 linfodetail.Text = combined.GetDescription();
 
-                MessageBox.Show("You combined them into a working flashlight!");
             }
             else
             {
@@ -245,6 +245,25 @@ namespace escaping_it
                     lname.Text = riddleKey.GetName();
                     linfodetail.Text = riddleKey.GetDescription();
                 }
+            }
+        }
+
+        private void bSidedoor_Click(object sender, EventArgs e)
+        {
+            if (!cipherSolved)
+            {
+                dark_room cf = new dark_room();
+                cf.ShowDialog();
+                if (cf.CipherSolved)
+                {
+                    cipherSolved = true;
+                     inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
+                     RefreshInventoryUI();
+                }
+            }
+            else
+            {
+              
             }
         }
     }
