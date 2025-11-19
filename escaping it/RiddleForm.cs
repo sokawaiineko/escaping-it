@@ -102,8 +102,13 @@ namespace escaping_it
             riddleLabel.Text = current.Question;
             answerBox.Text = "";
             lhint.Text = hinting(current.Answer);
+            Console.WriteLine(current.Answer.ToString());
             StartRiddleTimer();
         }
+        
+
+        
+
         private string hinting(string answer)
         {
             string[] words = answer.Trim().Split(' ');
@@ -111,10 +116,11 @@ namespace escaping_it
             {
                 if (words[i].Length > 0)
                 {
-                    words[i] = new string('_', words[i].Length);
+                   
+                    words[i] = string.Join(" ", Enumerable.Repeat("_", words[i].Length));
                 }
             }
-            return string.Join(" ", words);
+            return string.Join("  ", words);
         }
         private void CheckAnswer()
         {
@@ -128,7 +134,7 @@ namespace escaping_it
             {
                 riddleTimer.Stop();
                 KeyEarned = true;
-                ;
+                
                 this.Close();
             }
             else

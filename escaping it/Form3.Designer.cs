@@ -47,7 +47,7 @@
             this.b00.TabIndex = 0;
             this.b00.Text = "button1";
             this.b00.UseVisualStyleBackColor = true;
-            this.b00.Click += new System.EventHandler(this.LightsClicked);
+            this.b00.Click += new System.EventHandler(this.b00_Click);
             // 
             // b10
             // 
@@ -57,7 +57,6 @@
             this.b10.TabIndex = 1;
             this.b10.Text = "button2";
             this.b10.UseVisualStyleBackColor = true;
-            this.b10.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b20
             // 
@@ -67,7 +66,6 @@
             this.b20.TabIndex = 2;
             this.b20.Text = "button3";
             this.b20.UseVisualStyleBackColor = true;
-            this.b20.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b21
             // 
@@ -77,7 +75,6 @@
             this.b21.TabIndex = 5;
             this.b21.Text = "button4";
             this.b21.UseVisualStyleBackColor = true;
-            this.b21.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b11
             // 
@@ -87,7 +84,6 @@
             this.b11.TabIndex = 4;
             this.b11.Text = "button5";
             this.b11.UseVisualStyleBackColor = true;
-            this.b11.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b01
             // 
@@ -97,7 +93,6 @@
             this.b01.TabIndex = 3;
             this.b01.Text = "button6";
             this.b01.UseVisualStyleBackColor = true;
-            this.b01.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b22
             // 
@@ -107,7 +102,6 @@
             this.b22.TabIndex = 8;
             this.b22.Text = "button7";
             this.b22.UseVisualStyleBackColor = true;
-            this.b22.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b12
             // 
@@ -117,7 +111,6 @@
             this.b12.TabIndex = 7;
             this.b12.Text = "button8";
             this.b12.UseVisualStyleBackColor = true;
-            this.b12.Click += new System.EventHandler(this.LightsClicked);
             // 
             // b02
             // 
@@ -127,7 +120,6 @@
             this.b02.TabIndex = 6;
             this.b02.Text = "button9";
             this.b02.UseVisualStyleBackColor = true;
-            this.b02.Click += new System.EventHandler(this.LightsClicked);
             // 
             // LightsOutForm
             // 

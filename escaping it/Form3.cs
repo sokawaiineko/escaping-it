@@ -53,6 +53,7 @@ namespace escaping_it
             Toggle(col + 1, row);
             Toggle(col, row - 1);
             Toggle(col, row + 1);
+            UpdateAllVisuals();
             if (WinClause())
             {
                 PuzzleSolved = true;
@@ -98,7 +99,7 @@ namespace escaping_it
             }
 
             lights[c, r] = !lights[c, r];
-            UpdateVisual(c, r);
+            UpdateAllVisuals();
 
         }
         private bool WinClause()
@@ -110,8 +111,13 @@ namespace escaping_it
                     if (lights[c, r]) return false;
                 }
             }
+            
             return true;
         }
 
+        private void b00_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

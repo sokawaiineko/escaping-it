@@ -226,10 +226,13 @@ namespace escaping_it
         private void blightsout_Click(object sender, EventArgs e)
         {
             LightsOutForm lights = new LightsOutForm();
-            blightsout.Enabled = false;
+            
             lights.ShowDialog();
+
             
         }
+            
+        
 
         private void briddle_Click(object sender, EventArgs e)
         {
