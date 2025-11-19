@@ -32,29 +32,33 @@
             this.answerBox = new System.Windows.Forms.TextBox();
             this.bSubmit = new System.Windows.Forms.Button();
             this.labelTimer = new System.Windows.Forms.Label();
+            this.lhint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // riddleLabel
             // 
             this.riddleLabel.AutoSize = true;
-            this.riddleLabel.Location = new System.Drawing.Point(266, 36);
+            this.riddleLabel.Location = new System.Drawing.Point(399, 55);
+            this.riddleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.riddleLabel.Name = "riddleLabel";
-            this.riddleLabel.Size = new System.Drawing.Size(0, 13);
+            this.riddleLabel.Size = new System.Drawing.Size(0, 20);
             this.riddleLabel.TabIndex = 0;
             // 
             // answerBox
             // 
             this.answerBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.answerBox.Location = new System.Drawing.Point(310, 195);
+            this.answerBox.Location = new System.Drawing.Point(478, 295);
+            this.answerBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.answerBox.Name = "answerBox";
-            this.answerBox.Size = new System.Drawing.Size(100, 20);
+            this.answerBox.Size = new System.Drawing.Size(148, 26);
             this.answerBox.TabIndex = 1;
             // 
             // bSubmit
             // 
-            this.bSubmit.Location = new System.Drawing.Point(319, 221);
+            this.bSubmit.Location = new System.Drawing.Point(478, 340);
+            this.bSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bSubmit.Name = "bSubmit";
-            this.bSubmit.Size = new System.Drawing.Size(91, 32);
+            this.bSubmit.Size = new System.Drawing.Size(148, 51);
             this.bSubmit.TabIndex = 2;
             this.bSubmit.Text = "answer!";
             this.bSubmit.UseVisualStyleBackColor = true;
@@ -63,22 +67,34 @@
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
-            this.labelTimer.Location = new System.Drawing.Point(347, 314);
+            this.labelTimer.Location = new System.Drawing.Point(520, 483);
+            this.labelTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(35, 13);
+            this.labelTimer.Size = new System.Drawing.Size(51, 20);
             this.labelTimer.TabIndex = 3;
             this.labelTimer.Text = "label1";
             // 
+            // lhint
+            // 
+            this.lhint.AutoSize = true;
+            this.lhint.Location = new System.Drawing.Point(524, 434);
+            this.lhint.Name = "lhint";
+            this.lhint.Size = new System.Drawing.Size(51, 20);
+            this.lhint.TabIndex = 4;
+            this.lhint.Text = "label1";
+            // 
             // RiddleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.lhint);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.bSubmit);
             this.Controls.Add(this.answerBox);
             this.Controls.Add(this.riddleLabel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RiddleForm";
             this.Text = "RiddleForm";
             this.ResumeLayout(false);
@@ -92,5 +108,6 @@
         private System.Windows.Forms.TextBox answerBox;
         private System.Windows.Forms.Button bSubmit;
         private System.Windows.Forms.Label labelTimer;
+        private System.Windows.Forms.Label lhint;
     }
 }

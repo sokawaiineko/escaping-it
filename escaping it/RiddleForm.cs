@@ -18,6 +18,7 @@ namespace escaping_it
         int riddleCurrently;
         Timer riddleTimer;
         int timeLeft;
+        Random rand;
 
         public bool KeyEarned { get; private set; }
 
@@ -29,6 +30,7 @@ namespace escaping_it
             LoadRiddlesFromFile();
             SetupTimer();
             ShowNextRiddle();
+            rand = new Random();
         }
 
         private void LoadRiddlesFromFile()
@@ -92,15 +94,27 @@ namespace escaping_it
                 return;
             }
 
-            Random rand = new Random();
+           
             riddleCurrently = rand.Next(riddles.Count);
 
             Riddle current = riddles[riddleCurrently];
             riddleLabel.Text = current.Question;
             answerBox.Text = "";
+            lhint.Text = hinting(current.Answer);
             StartRiddleTimer();
         }
-
+        private string hinting(string answer)
+        {
+            string[] words = answer.Trim().Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i].Length > 0)
+                {
+                    words[i] = new string('_', words[i].Length);
+                }
+            }
+            return string.Join(" ", words);
+        }
         private void CheckAnswer()
         {
             if (riddles == null || riddles.Count == 0) return;
