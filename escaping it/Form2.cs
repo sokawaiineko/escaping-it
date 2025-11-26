@@ -26,6 +26,7 @@ namespace escaping_it
             menu = m;
             borderless(bmenu);
             borderless(briddle);
+            borderless(bbox);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
@@ -200,10 +201,8 @@ namespace escaping_it
             if (selectedItem != null && selectedItem.GetName() == "wrench")
             {
                 
-                bbox.BackgroundImage = Properties.Resources.Image__1_;  
-                bbox.BackgroundImageLayout = ImageLayout.Stretch;
+                bbox.Image = Properties.Resources.Image__1_;  
                 bkey.Visible = true;
-                bbox.Enabled = false;
             }
             else
             {
