@@ -200,7 +200,7 @@ namespace escaping_it
             if (selectedItem != null && selectedItem.GetName() == "wrench")
             {
                 
-                // bbox.BackgroundImage = Properties.Resources.openbox;   <--- NEED TO ADD IMAGE
+                bbox.BackgroundImage = Properties.Resources.Image__1_;  
                 bbox.BackgroundImageLayout = ImageLayout.Stretch;
                 bkey.Visible = true;
                 bbox.Enabled = false;

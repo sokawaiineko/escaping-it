@@ -133,6 +133,9 @@
     <None Include="Resources\room background.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Image %282%29.png" />
+    <None Include="Resources\Image %281%29.png" />
+    <None Include="Resources\Image.png" />
     <Content Include="riddles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
