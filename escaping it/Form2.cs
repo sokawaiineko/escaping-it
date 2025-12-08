@@ -27,6 +27,7 @@ namespace escaping_it
             borderless(bmenu);
             borderless(briddle);
             borderless(bbox);
+            borderless(bkey);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();

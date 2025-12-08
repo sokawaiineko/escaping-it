@@ -33,5 +33,7 @@ namespace escaping_it
         {
             Description = d;
         }
+
+        //MAKE INHERITANCE CLASSES FOR ITEMS
     }
 }
