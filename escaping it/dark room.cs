@@ -23,6 +23,8 @@ namespace escaping_it
             CipherSolved = false;
             Ciphering();
         }
+
+        // ceaser shift the word rafting to a random degree
         private void Ciphering()
         {
             plainText = "rafting";
@@ -33,6 +35,7 @@ namespace escaping_it
             lInfo.Text = "Decode the message.";
             tAnswer.Text = "";
         }
+        //will ceaser cipher encrypt any string
         private string Ceasaring(string text, int s)
         {
             text = text.ToLower();
@@ -46,6 +49,7 @@ namespace escaping_it
                 }
                 else
                 {
+                    // change letters to 0-25 and wraps around 
                     int pos = ch - 'a';
                     pos = (pos + s) % 26;
                     result[i] = (char)('a' + pos);
@@ -53,16 +57,19 @@ namespace escaping_it
             }
             return new string(result);
         }
+        //normalises input
         private string lowering(string s)
         {
-            s = s.ToLower();
-            StringBuilder sb = new StringBuilder();
+            s=s.ToLower();
+            string lowered = "";
             foreach (char c in s)
             {
-                if (c >= 'a' && c <= 'z') sb.Append(c);
+                if (c >= 'a' && c <= 'z')
+                    return lowered += c;
             }
-            return sb.ToString();
+            return lowered;
         }
+        // runs the check
         private void bcheck_Click(object sender, EventArgs e)
         {
             string user = lowering(tAnswer.Text);
@@ -77,11 +84,12 @@ namespace escaping_it
                 MessageBox.Show("incorrect");
             }
         }
+        //closes when quit
         private void bquit_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        
         private void lInfo_Click(object sender, EventArgs e)
         {
 

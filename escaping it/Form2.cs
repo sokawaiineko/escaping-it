@@ -12,7 +12,7 @@ namespace escaping_it
 {
     public partial class Game : Form
     {
-        
+
         private Menu menu;
 
         Inventory inventory;
@@ -22,7 +22,7 @@ namespace escaping_it
         public Game(Menu m)
         {
             InitializeComponent();
-            
+
             menu = m;
             borderless(bmenu);
             borderless(briddle);
@@ -38,15 +38,30 @@ namespace escaping_it
             puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
             puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
             puzzles.Add(new Puzzle("door", "a rusty door with a keyhole", new List<String> { "key" }));
-            
+
         }
         private Item firstCombineItem = null;
         private bool combineMode = false;
 
+        private void GiveItem(Item it)
+        {
+            if (it == null) return;
+
+            if (!inventory.HasItem(it.GetName()))
+            {
+                inventory.AddItem(it);
+                RefreshInventoryUI();
+            }
+
+            lname.Text = it.GetName();
+            linfodetail.Text = it.GetDescription();
+        }
+
+
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
             menu.Dispose();
         }
 
@@ -63,15 +78,15 @@ namespace escaping_it
         }
         private void bmenu_Click(object sender, EventArgs e)
         {
-            
+
             this.Hide();
             menu.Show();
         }
+        //flashlight item
         private void FlashlightWORKING(Item item1, Item item2)
         {
 
-            if ((item1.GetName() == "flashlight" && item2.GetName() == "battery") ||
-        (item1.GetName() == "battery" && item2.GetName() == "flashlight"))
+            if ((item1.GetName() == "flashlight" && item2.GetName() == "battery") || (item1.GetName() == "battery" && item2.GetName() == "flashlight"))
             {
                 inventory.RemoveItem("flashlight");
                 inventory.RemoveItem("battery");
@@ -111,7 +126,7 @@ namespace escaping_it
                 if (firstCombineItem == null)
                 {
                     firstCombineItem = it;
-                    
+
                 }
                 else
                 {
@@ -137,15 +152,8 @@ namespace escaping_it
         {
             if (!inventory.HasItem("flashlight"))
             {
-                Item flashlight = new Item("flashlight", "a small handheld light, useful for dark places.");
-                inventory.AddItem(flashlight);
-
+                GiveItem(new Item("flashlight", "a small handheld light, useful for dark places."));
                 bflashlight.Visible = false;
-                RefreshInventoryUI();
-
-                
-                lname.Text = flashlight.GetName();
-                linfodetail.Text = flashlight.GetDescription();
             }
         }
 
@@ -155,29 +163,20 @@ namespace escaping_it
             {
                 combineMode = true;
                 firstCombineItem = null;
-                
+
             }
             else
             {
                 combineMode = false;
                 firstCombineItem = null;
-                
+
             }
         }
 
         private void bbattery_Click(object sender, EventArgs e)
         {
-            if (!inventory.HasItem("battery"))
-            {
-                Item battery = new Item("battery", "a small battery, might power something.");
-                inventory.AddItem(battery);
-
-                bbattery.Visible = false;      
-                RefreshInventoryUI();
-
-                lname.Text = battery.GetName();
-                linfodetail.Text = battery.GetDescription();
-            }
+            GiveItem(new Item("battery", "a small battery, might power something."));
+            bbattery.Visible = false;
         }
 
         private void bwrench_Click(object sender, EventArgs e)
@@ -197,18 +196,8 @@ namespace escaping_it
 
         private void bbox_Click(object sender, EventArgs e)
         {
-            if (!bbox.Enabled) return;
-            
-            if (selectedItem != null && selectedItem.GetName() == "wrench")
-            {
-                
-                bbox.Image = Properties.Resources.Image__1_;  
-                bkey.Visible = true;
-            }
-            else
-            {
-                
-            }
+            GiveItem(new Item("key", "An old key"));
+            bkey.Visible = false;
         }
 
         private void bkey_Click(object sender, EventArgs e)
@@ -226,13 +215,13 @@ namespace escaping_it
         private void blightsout_Click(object sender, EventArgs e)
         {
             LightsOutForm lights = new LightsOutForm();
-            
+
             lights.ShowDialog();
 
-            
+
         }
-            
-        
+
+
 
         private void briddle_Click(object sender, EventArgs e)
         {
@@ -260,22 +249,29 @@ namespace escaping_it
                 if (cf.CipherSolved)
                 {
                     cipherSolved = true;
-                     inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
-                     RefreshInventoryUI();
+                    inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
+                    RefreshInventoryUI();
                 }
             }
             else
             {
-              
+
             }
+        }
+
+        private void bescape_Click(object sender, EventArgs e)
+        {
+            MazeForm maze = new MazeForm();
+
+            maze.ShowDialog();
         }
     }
 
 
-    
 
-    
 
-    
+
+
+
 
 }

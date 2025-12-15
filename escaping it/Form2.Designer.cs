@@ -42,6 +42,7 @@
             this.blightsout = new System.Windows.Forms.Button();
             this.briddle = new System.Windows.Forms.Button();
             this.bSidedoor = new System.Windows.Forms.Button();
+            this.bescape = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bmenu
@@ -50,10 +51,9 @@
             this.bmenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bmenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.bmenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(15)))), ((int)(((byte)(18)))));
-            this.bmenu.Location = new System.Drawing.Point(-9, 3);
-            this.bmenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bmenu.Location = new System.Drawing.Point(-6, 2);
             this.bmenu.Name = "bmenu";
-            this.bmenu.Size = new System.Drawing.Size(474, 131);
+            this.bmenu.Size = new System.Drawing.Size(316, 85);
             this.bmenu.TabIndex = 1;
             this.bmenu.Text = "MENU";
             this.bmenu.UseVisualStyleBackColor = true;
@@ -62,12 +62,10 @@
             // listinventory
             // 
             this.listinventory.FormattingEnabled = true;
-            this.listinventory.ItemHeight = 20;
-            this.listinventory.Location = new System.Drawing.Point(18, 329);
-            this.listinventory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listinventory.Location = new System.Drawing.Point(12, 214);
             this.listinventory.Name = "listinventory";
             this.listinventory.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listinventory.Size = new System.Drawing.Size(178, 384);
+            this.listinventory.Size = new System.Drawing.Size(120, 251);
             this.listinventory.TabIndex = 2;
             this.listinventory.SelectedIndexChanged += new System.EventHandler(this.listinventory_SelectedIndexChanged);
             // 
@@ -76,10 +74,9 @@
             this.linfodetail.AutoSize = true;
             this.linfodetail.BackColor = System.Drawing.Color.Transparent;
             this.linfodetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.linfodetail.Location = new System.Drawing.Point(957, 86);
-            this.linfodetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linfodetail.Location = new System.Drawing.Point(638, 56);
             this.linfodetail.Name = "linfodetail";
-            this.linfodetail.Size = new System.Drawing.Size(18, 25);
+            this.linfodetail.Size = new System.Drawing.Size(13, 17);
             this.linfodetail.TabIndex = 3;
             this.linfodetail.Text = " ";
             // 
@@ -88,19 +85,17 @@
             this.lcount.AutoSize = true;
             this.lcount.BackColor = System.Drawing.Color.Transparent;
             this.lcount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.lcount.Location = new System.Drawing.Point(14, 300);
-            this.lcount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lcount.Location = new System.Drawing.Point(9, 195);
             this.lcount.Name = "lcount";
-            this.lcount.Size = new System.Drawing.Size(70, 25);
+            this.lcount.Size = new System.Drawing.Size(52, 17);
             this.lcount.TabIndex = 4;
             this.lcount.Text = "label1";
             // 
             // bflashlight
             // 
-            this.bflashlight.Location = new System.Drawing.Point(152, 888);
-            this.bflashlight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bflashlight.Location = new System.Drawing.Point(101, 577);
             this.bflashlight.Name = "bflashlight";
-            this.bflashlight.Size = new System.Drawing.Size(216, 54);
+            this.bflashlight.Size = new System.Drawing.Size(144, 35);
             this.bflashlight.TabIndex = 5;
             this.bflashlight.Text = "flashlight placehold";
             this.bflashlight.UseVisualStyleBackColor = true;
@@ -111,19 +106,17 @@
             this.lname.AutoSize = true;
             this.lname.BackColor = System.Drawing.Color.Transparent;
             this.lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.lname.Location = new System.Drawing.Point(957, 28);
-            this.lname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lname.Location = new System.Drawing.Point(638, 18);
             this.lname.Name = "lname";
-            this.lname.Size = new System.Drawing.Size(18, 25);
+            this.lname.Size = new System.Drawing.Size(13, 17);
             this.lname.TabIndex = 6;
             this.lname.Text = " ";
             // 
             // bcombine
             // 
-            this.bcombine.Location = new System.Drawing.Point(18, 742);
-            this.bcombine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bcombine.Location = new System.Drawing.Point(12, 482);
             this.bcombine.Name = "bcombine";
-            this.bcombine.Size = new System.Drawing.Size(112, 35);
+            this.bcombine.Size = new System.Drawing.Size(75, 23);
             this.bcombine.TabIndex = 7;
             this.bcombine.Text = "combined";
             this.bcombine.UseVisualStyleBackColor = true;
@@ -131,10 +124,9 @@
             // 
             // bbattery
             // 
-            this.bbattery.Location = new System.Drawing.Point(962, 775);
-            this.bbattery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bbattery.Location = new System.Drawing.Point(826, 394);
             this.bbattery.Name = "bbattery";
-            this.bbattery.Size = new System.Drawing.Size(201, 43);
+            this.bbattery.Size = new System.Drawing.Size(134, 28);
             this.bbattery.TabIndex = 8;
             this.bbattery.Text = "battery placehold";
             this.bbattery.UseVisualStyleBackColor = true;
@@ -142,10 +134,9 @@
             // 
             // bwrench
             // 
-            this.bwrench.Location = new System.Drawing.Point(1026, 455);
-            this.bwrench.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bwrench.Location = new System.Drawing.Point(848, 430);
             this.bwrench.Name = "bwrench";
-            this.bwrench.Size = new System.Drawing.Size(216, 54);
+            this.bwrench.Size = new System.Drawing.Size(144, 35);
             this.bwrench.TabIndex = 9;
             this.bwrench.Text = "wrench placehold";
             this.bwrench.UseVisualStyleBackColor = true;
@@ -154,10 +145,9 @@
             // bbox
             // 
             this.bbox.Image = global::escaping_it.Properties.Resources.Image__2_;
-            this.bbox.Location = new System.Drawing.Point(345, 438);
-            this.bbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bbox.Location = new System.Drawing.Point(283, 484);
             this.bbox.Name = "bbox";
-            this.bbox.Size = new System.Drawing.Size(322, 197);
+            this.bbox.Size = new System.Drawing.Size(215, 128);
             this.bbox.TabIndex = 10;
             this.bbox.UseVisualStyleBackColor = true;
             this.bbox.Click += new System.EventHandler(this.bbox_Click);
@@ -165,19 +155,19 @@
             // bkey
             // 
             this.bkey.Image = global::escaping_it.Properties.Resources.Image;
-            this.bkey.Location = new System.Drawing.Point(407, 515);
-            this.bkey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bkey.Location = new System.Drawing.Point(306, 523);
             this.bkey.Name = "bkey";
-            this.bkey.Size = new System.Drawing.Size(201, 43);
+            this.bkey.Size = new System.Drawing.Size(134, 28);
             this.bkey.TabIndex = 11;
             this.bkey.UseVisualStyleBackColor = true;
             this.bkey.Click += new System.EventHandler(this.bkey_Click);
             // 
             // blightsout
             // 
-            this.blightsout.Location = new System.Drawing.Point(1580, 264);
+            this.blightsout.Location = new System.Drawing.Point(762, 214);
+            this.blightsout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.blightsout.Name = "blightsout";
-            this.blightsout.Size = new System.Drawing.Size(158, 145);
+            this.blightsout.Size = new System.Drawing.Size(97, 98);
             this.blightsout.TabIndex = 12;
             this.blightsout.Text = "button1";
             this.blightsout.UseVisualStyleBackColor = true;
@@ -185,10 +175,9 @@
             // 
             // briddle
             // 
-            this.briddle.Location = new System.Drawing.Point(1059, 186);
-            this.briddle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.briddle.Location = new System.Drawing.Point(1032, 214);
             this.briddle.Name = "briddle";
-            this.briddle.Size = new System.Drawing.Size(112, 35);
+            this.briddle.Size = new System.Drawing.Size(86, 94);
             this.briddle.TabIndex = 13;
             this.briddle.Text = "briddle";
             this.briddle.UseVisualStyleBackColor = true;
@@ -196,20 +185,33 @@
             // 
             // bSidedoor
             // 
-            this.bSidedoor.Location = new System.Drawing.Point(694, 12);
+            this.bSidedoor.Location = new System.Drawing.Point(554, 11);
+            this.bSidedoor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bSidedoor.Name = "bSidedoor";
-            this.bSidedoor.Size = new System.Drawing.Size(146, 462);
+            this.bSidedoor.Size = new System.Drawing.Size(204, 521);
             this.bSidedoor.TabIndex = 14;
             this.bSidedoor.Text = "button1";
             this.bSidedoor.UseVisualStyleBackColor = true;
             this.bSidedoor.Click += new System.EventHandler(this.bSidedoor_Click);
             // 
+            // bescape
+            // 
+            this.bescape.Location = new System.Drawing.Point(1136, 95);
+            this.bescape.Margin = new System.Windows.Forms.Padding(2);
+            this.bescape.Name = "bescape";
+            this.bescape.Size = new System.Drawing.Size(109, 437);
+            this.bescape.TabIndex = 15;
+            this.bescape.Text = "escape maze..";
+            this.bescape.UseVisualStyleBackColor = true;
+            this.bescape.Click += new System.EventHandler(this.bescape_Click);
+            // 
             // Game
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
-            this.ClientSize = new System.Drawing.Size(1898, 1025);
+            this.ClientSize = new System.Drawing.Size(1265, 666);
+            this.Controls.Add(this.bescape);
             this.Controls.Add(this.bSidedoor);
             this.Controls.Add(this.briddle);
             this.Controls.Add(this.blightsout);
@@ -224,7 +226,6 @@
             this.Controls.Add(this.linfodetail);
             this.Controls.Add(this.listinventory);
             this.Controls.Add(this.bmenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Game";
             this.Text = "escape room";
             this.ResumeLayout(false);
@@ -248,5 +249,6 @@
         private System.Windows.Forms.Button blightsout;
         private System.Windows.Forms.Button briddle;
         private System.Windows.Forms.Button bSidedoor;
+        private System.Windows.Forms.Button bescape;
     }
 }

@@ -8,22 +8,22 @@ namespace escaping_it
 {
     internal class Puzzle
     {
-        private String Id;
+        private String Name;
         private String Description;
         private List<String> RequiredItems;
         private bool Solved;
 
-        public Puzzle(String id, String description, List<String> requiredItems)
+        public Puzzle(String name, String description, List<String> requiredItems)
         {
-            Id = id;
+            Name = name;
             Description = description;
             RequiredItems = requiredItems;
             Solved = false;
         }
 
-        public String GetId()
+        public String GetName()
         {
-            return Id;
+            return Name;
         }
 
         public String GetDescription()
