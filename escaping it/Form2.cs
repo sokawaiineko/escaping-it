@@ -252,6 +252,7 @@ namespace escaping_it
                     inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
                     RefreshInventoryUI();
                 }
+                //comment
             }
             else
             {
