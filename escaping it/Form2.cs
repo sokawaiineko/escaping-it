@@ -196,8 +196,9 @@ namespace escaping_it
 
         private void bbox_Click(object sender, EventArgs e)
         {
-            GiveItem(new Item("key", "An old key"));
-            bkey.Visible = false;
+            
+            
+
         }
 
         private void bkey_Click(object sender, EventArgs e)

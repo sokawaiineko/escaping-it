@@ -21,11 +21,12 @@ namespace escaping_it
         public MazeForm()
         {
             InitializeComponent();
-            this.DoubleBuffered = true; 
+            this.DoubleBuffered = true;
             this.KeyPreview = true; 
             this.KeyDown += Maze_KeyDown;
             MazeSolved = false;
             //make maze when it starts
+            //aa
             MakeMaze(); 
         }
 
@@ -80,22 +81,22 @@ namespace escaping_it
 
             foreach (Point d in directions)
             {
-                int nx = x + d.X * 2;
-                int ny = y + d.Y * 2;
+                int sx = x + d.X * 2;
+                int sy = y + d.Y * 2;
 
                 //check if still inside maze and not visited yet
-                if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && maze[nx, ny] == 1)
+                if (sx >= 0 && sy >= 0 && sx < cols && sy < rows && maze[sx, sy] == 1)
                 {
                     //break the wall between the cells
                     maze[x + d.X, y + d.Y] = 0;
 
-                    //this makes it draw while carving
+                    //draws
                     Invalidate(new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize));
                     Update();
                     //small delay so it doesnt blind me
                     System.Threading.Thread.Sleep(5); 
 
-                    DFS(nx, ny);
+                    DFS(sx, sy);
                 }
             }
         }
@@ -134,7 +135,6 @@ namespace escaping_it
                 }
             }
         }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -147,14 +147,14 @@ namespace escaping_it
                     Brush colour = Brushes.MediumSlateBlue;
 
                     if (maze[x, y] == 1)
-                        
-                        colour = Brushes.Black; 
+
+                        colour = Brushes.Black;
                     else if (maze[x, y] == 2)
-                        colour = Brushes.Green; 
+                        colour = Brushes.Green;
                     else if (maze[x, y] == 3)
-                        colour = Brushes.Gold; 
+                        colour = Brushes.Gold;
                     else if (maze[x, y] == 4)
-                        colour = Brushes.DeepSkyBlue; 
+                        colour = Brushes.DeepSkyBlue;
 
                     g.FillRectangle(colour, rect);
                     g.DrawRectangle(Pens.Gray, rect);
@@ -163,5 +163,6 @@ namespace escaping_it
 
             base.OnPaint(e);
         }
+
     }
 }
