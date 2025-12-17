@@ -93,8 +93,7 @@ namespace escaping_it
                     //draws
                     Invalidate(new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize));
                     Update();
-                    //small delay so it doesnt blind me
-                    System.Threading.Thread.Sleep(5); 
+                    
 
                     DFS(sx, sy);
                 }
@@ -144,7 +143,7 @@ namespace escaping_it
                 for (int y = 0; y < rows; y++)
                 {
                     Rectangle rect = new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize);
-                    Brush colour = Brushes.MediumSlateBlue;
+                    Brush colour = Brushes.SlateBlue;
 
                     if (maze[x, y] == 1)
 
@@ -154,7 +153,7 @@ namespace escaping_it
                     else if (maze[x, y] == 3)
                         colour = Brushes.Gold;
                     else if (maze[x, y] == 4)
-                        colour = Brushes.DeepSkyBlue;
+                        colour = Brushes.SlateBlue;
 
                     g.FillRectangle(colour, rect);
                     g.DrawRectangle(Pens.Gray, rect);
