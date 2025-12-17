@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace escaping_it
 {
     public partial class MazeForm : Form
     {
-        int cols = 20;
-        int rows = 20;
-        int cellSize = 25;
+        //how many across n down
+        int cols = 31; 
+        int rows = 31; 
+        int cellSize = 25; 
         int[,] maze;
         Point player;
         Point goal;
@@ -25,10 +21,12 @@ namespace escaping_it
         public MazeForm()
         {
             InitializeComponent();
-            this.KeyPreview = true;
+            this.DoubleBuffered = true; 
+            this.KeyPreview = true; 
             this.KeyDown += Maze_KeyDown;
             MazeSolved = false;
-            MakeMaze();
+            //make maze when it starts
+            MakeMaze(); 
         }
 
         private void MakeMaze()
@@ -42,33 +40,71 @@ namespace escaping_it
             {
                 for (int y = 0; y < rows; y++)
                 {
-                    bool diag = (x == y);
-                    bool edge = (x == 0 && y < rows - 1) || (y == rows - 1 && x < cols);
-                    if (diag || edge)
-                    {
-                        maze[x, y] = 0;
-                    }
-                    else
-                    {
-                        int rand = rng.Next(100);
-                        if (rand < 35)
-                            maze[x, y] = 1;
-                        else
-                            maze[x, y] = 0;
-                    }
+                    //fill the maze with walls first
+                    maze[x, y] = 1;
                 }
             }
 
+            //do depth first search to carve the maze
+            DFS(start.X, start.Y);
+
+            // mark start and goal
             maze[start.X, start.Y] = 4;
             maze[goal.X, goal.Y] = 3;
             maze[player.X, player.Y] = 2;
+
             this.Refresh();
+        }
+
+        private void DFS(int x, int y)
+        {
+            //mark current as open path
+            maze[x, y] = 0;
+
+            List<Point> directions = new List<Point>
+            {
+                new Point(1, 0),
+                new Point(-1, 0),
+                new Point(0, 1),
+                new Point(0, -1)
+            };
+
+            //mix directions up
+            for (int i = 0; i < directions.Count; i++)
+            {
+                int r = rng.Next(directions.Count);
+                Point temp = directions[i];
+                directions[i] = directions[r];
+                directions[r] = temp;
+            }
+
+            foreach (Point d in directions)
+            {
+                int nx = x + d.X * 2;
+                int ny = y + d.Y * 2;
+
+                //check if still inside maze and not visited yet
+                if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && maze[nx, ny] == 1)
+                {
+                    //break the wall between the cells
+                    maze[x + d.X, y + d.Y] = 0;
+
+                    //this makes it draw while carving
+                    Invalidate(new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize));
+                    Update();
+                    //small delay so it doesnt blind me
+                    System.Threading.Thread.Sleep(5); 
+
+                    DFS(nx, ny);
+                }
+            }
         }
 
         private void Maze_KeyDown(object sender, KeyEventArgs e)
         {
             Point newPos = new Point(player.X, player.Y);
 
+            //movement keys
             if (e.KeyCode == Keys.W)
                 newPos.Y--;
             else if (e.KeyCode == Keys.S)
@@ -78,9 +114,11 @@ namespace escaping_it
             else if (e.KeyCode == Keys.D)
                 newPos.X++;
 
+            //dont go outside
             if (newPos.X < 0 || newPos.Y < 0 || newPos.X >= cols || newPos.Y >= rows)
                 return;
 
+            //move if not wall
             if (maze[newPos.X, newPos.Y] != 1)
             {
                 maze[player.X, player.Y] = 0;
@@ -88,6 +126,7 @@ namespace escaping_it
                 maze[player.X, player.Y] = 2;
                 this.Refresh();
 
+                // check if goal
                 if (player == goal)
                 {
                     MazeSolved = true;
@@ -105,16 +144,17 @@ namespace escaping_it
                 for (int y = 0; y < rows; y++)
                 {
                     Rectangle rect = new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize);
-                    Brush colour = Brushes.DarkGray;
+                    Brush colour = Brushes.MediumSlateBlue;
 
                     if (maze[x, y] == 1)
-                        colour = Brushes.Black;
+                        
+                        colour = Brushes.Black; 
                     else if (maze[x, y] == 2)
-                        colour = Brushes.LightGreen;
+                        colour = Brushes.Green; 
                     else if (maze[x, y] == 3)
-                        colour = Brushes.Gold;
+                        colour = Brushes.Gold; 
                     else if (maze[x, y] == 4)
-                        colour = Brushes.DeepSkyBlue;
+                        colour = Brushes.DeepSkyBlue; 
 
                     g.FillRectangle(colour, rect);
                     g.DrawRectangle(Pens.Gray, rect);
