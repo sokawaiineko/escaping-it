@@ -124,7 +124,7 @@
             // 
             // bbattery
             // 
-            this.bbattery.Location = new System.Drawing.Point(826, 394);
+            this.bbattery.Location = new System.Drawing.Point(952, 386);
             this.bbattery.Name = "bbattery";
             this.bbattery.Size = new System.Drawing.Size(134, 28);
             this.bbattery.TabIndex = 8;
@@ -134,7 +134,7 @@
             // 
             // bwrench
             // 
-            this.bwrench.Location = new System.Drawing.Point(848, 430);
+            this.bwrench.Location = new System.Drawing.Point(974, 448);
             this.bwrench.Name = "bwrench";
             this.bwrench.Size = new System.Drawing.Size(144, 35);
             this.bwrench.TabIndex = 9;
@@ -154,43 +154,48 @@
             // 
             // bkey
             // 
+            this.bkey.BackColor = System.Drawing.Color.Transparent;
+            this.bkey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bkey.Image = global::escaping_it.Properties.Resources.Image;
-            this.bkey.Location = new System.Drawing.Point(306, 523);
+            this.bkey.Location = new System.Drawing.Point(368, 529);
             this.bkey.Name = "bkey";
-            this.bkey.Size = new System.Drawing.Size(134, 28);
+            this.bkey.Size = new System.Drawing.Size(72, 38);
             this.bkey.TabIndex = 11;
-            this.bkey.UseVisualStyleBackColor = true;
+            this.bkey.UseVisualStyleBackColor = false;
             this.bkey.Click += new System.EventHandler(this.bkey_Click);
             // 
             // blightsout
             // 
-            this.blightsout.Location = new System.Drawing.Point(762, 214);
-            this.blightsout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.blightsout.BackgroundImage = global::escaping_it.Properties.Resources.IMG_1536;
+            this.blightsout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.blightsout.Location = new System.Drawing.Point(609, 214);
+            this.blightsout.Margin = new System.Windows.Forms.Padding(2);
             this.blightsout.Name = "blightsout";
-            this.blightsout.Size = new System.Drawing.Size(97, 98);
+            this.blightsout.Size = new System.Drawing.Size(75, 74);
             this.blightsout.TabIndex = 12;
-            this.blightsout.Text = "button1";
             this.blightsout.UseVisualStyleBackColor = true;
             this.blightsout.Click += new System.EventHandler(this.blightsout_Click);
             // 
             // briddle
             // 
-            this.briddle.Location = new System.Drawing.Point(1032, 214);
+            this.briddle.BackgroundImage = global::escaping_it.Properties.Resources.Untitled_Artwork__2_;
+            this.briddle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.briddle.Location = new System.Drawing.Point(1124, 35);
             this.briddle.Name = "briddle";
-            this.briddle.Size = new System.Drawing.Size(86, 94);
+            this.briddle.Size = new System.Drawing.Size(121, 58);
             this.briddle.TabIndex = 13;
-            this.briddle.Text = "briddle";
             this.briddle.UseVisualStyleBackColor = true;
             this.briddle.Click += new System.EventHandler(this.briddle_Click);
             // 
             // bSidedoor
             // 
-            this.bSidedoor.Location = new System.Drawing.Point(554, 11);
-            this.bSidedoor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bSidedoor.BackgroundImage = global::escaping_it.Properties.Resources.Untitled_Artwork__1_;
+            this.bSidedoor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bSidedoor.Location = new System.Drawing.Point(688, -27);
+            this.bSidedoor.Margin = new System.Windows.Forms.Padding(2);
             this.bSidedoor.Name = "bSidedoor";
             this.bSidedoor.Size = new System.Drawing.Size(204, 521);
             this.bSidedoor.TabIndex = 14;
-            this.bSidedoor.Text = "button1";
             this.bSidedoor.UseVisualStyleBackColor = true;
             this.bSidedoor.Click += new System.EventHandler(this.bSidedoor_Click);
             // 
@@ -212,7 +217,6 @@
             this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
             this.ClientSize = new System.Drawing.Size(1265, 666);
             this.Controls.Add(this.bescape);
-            this.Controls.Add(this.bSidedoor);
             this.Controls.Add(this.briddle);
             this.Controls.Add(this.blightsout);
             this.Controls.Add(this.bkey);
@@ -226,6 +230,7 @@
             this.Controls.Add(this.linfodetail);
             this.Controls.Add(this.listinventory);
             this.Controls.Add(this.bmenu);
+            this.Controls.Add(this.bSidedoor);
             this.Name = "Game";
             this.Text = "escape room";
             this.ResumeLayout(false);

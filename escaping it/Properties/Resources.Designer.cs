@@ -103,6 +103,26 @@ namespace escaping_it.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IMG_1535 {
+            get {
+                object obj = ResourceManager.GetObject("IMG_1535", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_1536 {
+            get {
+                object obj = ResourceManager.GetObject("IMG_1536", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap panel_backing_for_lightsout {
             get {
                 object obj = ResourceManager.GetObject("panel backing for lightsout", resourceCulture);
@@ -126,6 +146,26 @@ namespace escaping_it.Properties {
         internal static System.Drawing.Bitmap sailing_ship {
             get {
                 object obj = ResourceManager.GetObject("sailing ship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_Artwork__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Untitled_Artwork (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_Artwork__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Untitled_Artwork (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

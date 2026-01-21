@@ -16,6 +16,12 @@ namespace escaping_it
         Point goal;
         Point start;
         Random rng = new Random();
+
+        Stack<Point> undo = new Stack<Point>();
+        int movesTaken = 0;
+        int maxMoves = 0;
+        int bestMoves = 0;
+
         public bool MazeSolved { get; private set; }
 
         public MazeForm()
@@ -55,6 +61,10 @@ namespace escaping_it
             maze[player.X, player.Y] = 2;
 
             this.Refresh();
+            undo.Clear();
+            movesTaken = 0;
+            bestMoves = Shortest();
+            maxMoves = bestMoves;
         }
 
         private void DFS(int x, int y)
@@ -99,20 +109,112 @@ namespace escaping_it
                 }
             }
         }
+       
+        private int Shortest()
+        {
+            int[,] dist = new int[cols, rows];
 
+            for (int x = 0; x < cols; x++)
+            {
+                for (int y = 0; y < rows; y++)
+                {
+                    dist[x, y] = -1;
+                }
+            }
+
+            Queue<Point> q = new Queue<Point>();
+            q.Enqueue(start);
+            dist[start.X, start.Y] = 0;
+
+            int[] dx = { 1, -1, 0, 0 };
+            int[] dy = { 0, 0, 1, -1 };
+
+            while (q.Count > 0)
+            {
+                Point p = q.Dequeue();
+
+                if (p == goal)
+                {
+                    return dist[p.X, p.Y];
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    int nx = p.X + dx[i];
+                    int ny = p.Y + dy[i];
+
+                    if (nx < 0 || ny < 0 || nx >= cols || ny >= rows)
+                    {
+                        continue;
+                    }
+
+                    if (dist[nx, ny] != -1)
+                    {
+                        continue;
+                    }
+                    if (maze[nx, ny] == 1)
+                    {   
+                        continue;
+                    }
+                    dist[nx, ny] = dist[p.X, p.Y] + 1;
+                    q.Enqueue(new Point(nx, ny));
+                }
+            }
+
+            return int.MaxValue;
+        }
+        private void TryUndo()
+        {
+            if (undo.Count <= 0)
+            { 
+            return;
+            }
+
+            maze[player.X, player.Y] = 0;
+
+            player = undo.Pop();
+            maze[player.X, player.Y] = 2;
+
+            if (movesTaken > 0)
+            {
+                movesTaken--;
+            }
+            this.Refresh();
+
+        }
         private void Maze_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Z || e.KeyCode == Keys.Back)
+            {
+                TryUndo();
+                return;
+            }
+
+            if (movesTaken >= maxMoves)
+            {
+                MessageBox.Show("Out of moves.");
+                return;
+            }
+
             Point newPos = new Point(player.X, player.Y);
 
             //movement keys
             if (e.KeyCode == Keys.W)
+            {
                 newPos.Y--;
+            }
             else if (e.KeyCode == Keys.S)
+            {
                 newPos.Y++;
+            }
             else if (e.KeyCode == Keys.A)
+            {
                 newPos.X--;
+            }
             else if (e.KeyCode == Keys.D)
+            {
                 newPos.X++;
+            }
 
             //dont go outside
             if (newPos.X < 0 || newPos.Y < 0 || newPos.X >= cols || newPos.Y >= rows)
@@ -121,18 +223,28 @@ namespace escaping_it
             //move if not wall
             if (maze[newPos.X, newPos.Y] != 1)
             {
+                undo.Push(player);
+
                 maze[player.X, player.Y] = 0;
                 player = newPos;
                 maze[player.X, player.Y] = 2;
+
+                movesTaken++;
                 this.Refresh();
+
 
                 // check if goal
                 if (player == goal)
                 {
-                    MazeSolved = true;
-                    Close();
+                    if (movesTaken == bestMoves)
+                    {
+                        MazeSolved = true;
+                        Close();
+                    }
+                    
                 }
             }
+        
         }
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -146,14 +258,21 @@ namespace escaping_it
                     Brush colour = Brushes.SlateBlue;
 
                     if (maze[x, y] == 1)
-
+                    {
                         colour = Brushes.Black;
+                    }
                     else if (maze[x, y] == 2)
+                    {
                         colour = Brushes.Green;
+                    }
                     else if (maze[x, y] == 3)
+                    {
                         colour = Brushes.Gold;
+                    }
                     else if (maze[x, y] == 4)
+                    {
                         colour = Brushes.SlateBlue;
+                    }
 
                     g.FillRectangle(colour, rect);
                     g.DrawRectangle(Pens.Gray, rect);

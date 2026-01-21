@@ -19,6 +19,7 @@ namespace escaping_it
         List<Puzzle> puzzles;
         private Item selectedItem = null;
         bool cipherSolved = false;
+        private bool lightsOutSolved = false;
         public Game(Menu m)
         {
             InitializeComponent();
@@ -27,17 +28,22 @@ namespace escaping_it
             borderless(bmenu);
             borderless(briddle);
             borderless(bbox);
+            borderless(bSidedoor);
             borderless(bkey);
+            borderless(blightsout);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
             this.FormClosed += Game_FormClosed;
             bkey.Visible = false;
+            
+            
 
 
-            puzzles.Add(new Puzzle("darkcorner", "too dark to see here", new List<String> { "flashlight" }));
-            puzzles.Add(new Puzzle("generator", "needs a battery to power lights", new List<String> { "battery" }));
-            puzzles.Add(new Puzzle("door", "a rusty door with a keyhole", new List<String> { "key" }));
+
+            //puzzles.Add(new Puzzle("darkroom", "too dark to see here", new List<String> { "flashlight" }));
+            //puzzles.Add(new Puzzle("broken lightbulb", "needs a bulb to power lights", new List<String> { "working flashlight" }));
+            //puzzles.Add(new Puzzle("door", "a rusty door with a keyhole", new List<String> { "key" }));
 
         }
         private Item firstCombineItem = null;
@@ -78,7 +84,7 @@ namespace escaping_it
         }
         private void bmenu_Click(object sender, EventArgs e)
         {
-
+            
             this.Hide();
             menu.Show();
         }
@@ -196,8 +202,26 @@ namespace escaping_it
 
         private void bbox_Click(object sender, EventArgs e)
         {
-            
-            
+            if (selectedItem == null)
+            {
+                return;
+            }
+            else if (selectedItem.GetName() != "wrench")
+            {
+                linfodetail.Text = "that doesnt seem to work.";
+
+            }
+            else if (selectedItem.GetName() == "wrench")
+            {
+                linfodetail.Text = "you open the box";
+                bbox.Image = Properties.Resources.Image__1_;
+                bkey.Visible = true;
+                RefreshInventoryUI();
+                selectedItem = null;
+                lname.Text = "";
+                linfodetail.Text = "";
+            }
+
 
         }
 
@@ -215,9 +239,18 @@ namespace escaping_it
 
         private void blightsout_Click(object sender, EventArgs e)
         {
-            LightsOutForm lights = new LightsOutForm();
-
-            lights.ShowDialog();
+            
+            
+            using (LightsOutForm lights = new LightsOutForm())
+            {
+                lights.ShowDialog();
+                if (lights.PuzzleSolved)
+                {
+                    lightsOutSolved = true;
+                    linfodetail.Text = "You hear a click... something changed.";
+                    blightsout.Enabled = false;
+                }
+            }
 
 
         }
@@ -242,22 +275,50 @@ namespace escaping_it
         }
 
         private void bSidedoor_Click(object sender, EventArgs e)
-        {
-            if (!cipherSolved)
-            {
-                dark_room cf = new dark_room();
-                cf.ShowDialog();
-                if (cf.CipherSolved)
-                {
-                    cipherSolved = true;
-                    inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
-                    RefreshInventoryUI();
-                }
-                //comment
-            }
-            else
-            {
 
+        {
+            if (!lightsOutSolved)
+            {
+                linfodetail.Text = "the door wont open... maybe you need to fix the lights first.";
+                return;
+            }
+
+            if (selectedItem == null)
+            {
+                linfodetail.Text = "select an item to use.";
+                return;
+            }
+            else if (selectedItem.GetName() != "working flashlight")
+            {
+                linfodetail.Text = "that doesnt seem to work, do you have everything?.";
+                return;
+            }
+            else if (selectedItem.GetName() == "working flashlight")
+            {
+                linfodetail.Text = "you shine the flashlight and enter.";
+                bSidedoor.BackgroundImage = Properties.Resources.IMG_1535;
+
+                RefreshInventoryUI();
+                selectedItem = null;
+                lname.Text = "";
+                linfodetail.Text = "";
+                if (!cipherSolved)
+                {
+                    dark_room cf = new dark_room();
+                    cf.ShowDialog();
+                    if (cf.CipherSolved)
+                    {
+                        cipherSolved = true;
+                        inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
+                        RefreshInventoryUI();
+                    }
+
+                  //comment
+                }
+                else
+                {
+                    linfodetail.Text = "you already did this.";
+                }
             }
         }
 

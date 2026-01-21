@@ -143,6 +143,10 @@
     <None Include="Resources\Image %281%29.png" />
     <None Include="Resources\Image.png" />
     <None Include="Resources\panel backing for lightsout.png" />
+    <None Include="Resources\Untitled_Artwork %281%29.PNG" />
+    <None Include="Resources\IMG_1536.png" />
+    <None Include="Resources\Untitled_Artwork %282%29.png" />
+    <None Include="Resources\IMG_1535.PNG" />
     <Content Include="riddles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
