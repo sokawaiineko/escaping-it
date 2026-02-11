@@ -8,14 +8,16 @@ namespace escaping_it
     public partial class MazeForm : Form
     {
         //how many across n down
-        int cols = 31; 
-        int rows = 31; 
+        int col = 31; 
+        int row = 31; 
         int cellSize = 25; 
         int[,] maze;
         Point player;
         Point goal;
         Point start;
         Random rng = new Random();
+        public bool MazeCompleted { get; private set; }
+
 
         Stack<Point> undo = new Stack<Point>();
         int movesTaken = 0;
@@ -27,10 +29,12 @@ namespace escaping_it
         public MazeForm()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
             this.KeyPreview = true; 
             this.KeyDown += Maze_KeyDown;
             MazeSolved = false;
+            MazeCompleted=false;
+            this.DoubleBuffered = true; 
+
             //make maze when it starts
             //aa
             MakeMaze(); 
@@ -38,16 +42,16 @@ namespace escaping_it
 
         private void MakeMaze()
         {
-            maze = new int[cols, rows];
-            goal = new Point(cols - 1, rows - 1);
+            maze = new int[col, row];
+            goal = new Point(col - 1, row - 1);
             start = new Point(0, 0);
             player = new Point(start.X, start.Y);
 
-            for (int x = 0; x < cols; x++)
+            for (int x = 0; x < col; x++)
             {
-                for (int y = 0; y < rows; y++)
+                for (int y = 0; y < row; y++)
                 {
-                    //fill the maze with walls first
+                    //make entire maze with walls first
                     maze[x, y] = 1;
                 }
             }
@@ -55,7 +59,7 @@ namespace escaping_it
             //do depth first search to carve the maze
             DFS(start.X, start.Y);
 
-            // mark start and goal
+            // start and goal
             maze[start.X, start.Y] = 4;
             maze[goal.X, goal.Y] = 3;
             maze[player.X, player.Y] = 2;
@@ -95,7 +99,7 @@ namespace escaping_it
                 int sy = y + d.Y * 2;
 
                 //check if still inside maze and not visited yet
-                if (sx >= 0 && sy >= 0 && sx < cols && sy < rows && maze[sx, sy] == 1)
+                if (sx >= 0 && sy >= 0 && sx < col && sy < row && maze[sx, sy] == 1)
                 {
                     //break the wall between the cells
                     maze[x + d.X, y + d.Y] = 0;
@@ -112,11 +116,11 @@ namespace escaping_it
        
         private int Shortest()
         {
-            int[,] dist = new int[cols, rows];
+            int[,] dist = new int[col, row];
 
-            for (int x = 0; x < cols; x++)
+            for (int x = 0; x < col; x++)
             {
-                for (int y = 0; y < rows; y++)
+                for (int y = 0; y < row; y++)
                 {
                     dist[x, y] = -1;
                 }
@@ -143,7 +147,7 @@ namespace escaping_it
                     int nx = p.X + dx[i];
                     int ny = p.Y + dy[i];
 
-                    if (nx < 0 || ny < 0 || nx >= cols || ny >= rows)
+                    if (nx < 0 || ny < 0 || nx >= col || ny >= row)
                     {
                         continue;
                     }
@@ -217,7 +221,7 @@ namespace escaping_it
             }
 
             //dont go outside
-            if (newPos.X < 0 || newPos.Y < 0 || newPos.X >= cols || newPos.Y >= rows)
+            if (newPos.X < 0 || newPos.Y < 0 || newPos.X >= col || newPos.Y >= row)
                 return;
 
             //move if not wall
@@ -239,6 +243,7 @@ namespace escaping_it
                     if (movesTaken == bestMoves)
                     {
                         MazeSolved = true;
+                        MazeCompleted = true;
                         Close();
                     }
                     
@@ -250,9 +255,9 @@ namespace escaping_it
         {
             Graphics g = e.Graphics;
 
-            for (int x = 0; x < cols; x++)
+            for (int x = 0; x < col; x++)
             {
-                for (int y = 0; y < rows; y++)
+                for (int y = 0; y < row; y++)
                 {
                     Rectangle rect = new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize);
                     Brush colour = Brushes.SlateBlue;

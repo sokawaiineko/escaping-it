@@ -72,6 +72,7 @@ namespace escaping_it
             menu.Dispose();
         }
 
+        // give all buttons a borderless style
         private void borderless(Button b)
         {
 
@@ -111,6 +112,7 @@ namespace escaping_it
             RefreshInventoryUI();
         }
 
+        //select items in the inventory list
         private void listinventory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listinventory == null || linfodetail == null) return;
@@ -143,6 +145,7 @@ namespace escaping_it
                 }
             }
         }
+        //refresh inventory
         private void RefreshInventoryUI()
         {
             if (listinventory == null) return;
@@ -155,6 +158,7 @@ namespace escaping_it
             if (linfodetail != null) linfodetail.Text = "";
         }
 
+       
         private void bflashlight_Click(object sender, EventArgs e)
         {
             if (!inventory.HasItem("flashlight"))
@@ -240,15 +244,39 @@ namespace escaping_it
 
         private void blightsout_Click(object sender, EventArgs e)
         {
-            
-            
+
+
+            if (lightsOutSolved) return;
+
+            if (!lightsOutSolved)
+            {
+                if (selectedItem == null)
+                {
+                    linfodetail.Text = "select an item to use";
+                    return;
+                }
+                if (selectedItem.GetName() != "key")
+                {
+                    linfodetail.Text = "that doesnt fit the lock";
+                    return;
+                }
+
+                lightsOutSolved = true;
+                inventory.RemoveItem("key");
+                RefreshInventoryUI();
+                linfodetail.Text = "you use the key on the lock";
+                lname.Text = "";
+                selectedItem = null;
+
+            }
+
             using (LightsOutForm lights = new LightsOutForm())
             {
                 lights.ShowDialog();
                 if (lights.PuzzleSolved)
                 {
                     lightsOutSolved = true;
-                    linfodetail.Text = "You hear a click... something changed.";
+                    linfodetail.Text = "you hear a click... something is different";
                     blightsout.Enabled = false;
                 }
             }
@@ -260,19 +288,35 @@ namespace escaping_it
 
         private void briddle_Click(object sender, EventArgs e)
         {
+            if (selectedItem == null)
+            {
+                linfodetail.Text = "select an item to use";
+                return;
+            }
+
+            if (selectedItem.GetName() != "Paper")
+            {
+                linfodetail.Text = "Do you really know what you're getting into?";
+                return;
+            }
+
             using (RiddleForm riddle = new RiddleForm())
             {
                 riddle.ShowDialog();
 
                 if (riddle.KeyEarned && !inventory.HasItem("riddle key"))
                 {
-                    Item riddleKey = new Item("riddle key", "A small key earned from solving the riddle.");
+                    Item riddleKey = new Item("keycard", "A small keycard earned from solving the riddle.");
                     inventory.AddItem(riddleKey);
                     RefreshInventoryUI();
                     lname.Text = riddleKey.GetName();
                     linfodetail.Text = riddleKey.GetDescription();
                 }
             }
+
+            selectedItem = null;
+            lname.Text = "";
+            linfodetail.Text = "";
         }
 
         private void bSidedoor_Click(object sender, EventArgs e)
@@ -310,11 +354,11 @@ namespace escaping_it
                     if (cf.CipherSolved)
                     {
                         cipherSolved = true;
-                        inventory.AddItem(new Item("Paper", "A piece of paper reading : "));
+                        inventory.AddItem(new Item("Paper", "A piece of paper reading : How well do you remember those classic riddles?"));
                         RefreshInventoryUI();
                     }
 
-                  //comment
+                 
                 }
                 else
                 {
@@ -325,9 +369,32 @@ namespace escaping_it
 
         private void bescape_Click(object sender, EventArgs e)
         {
-            MazeForm maze = new MazeForm();
+            if (selectedItem == null)
+            {
+                linfodetail.Text = "select an item to use";
+                return;
+            }
 
+            if (selectedItem.GetName() != "keycard")
+            {
+                linfodetail.Text = "that doesnt unlock this";
+                return;
+            }
+
+            inventory.RemoveItem("keycard");
+            RefreshInventoryUI();
+
+            selectedItem = null;
+            linfodetail.Text = "you unlock the final door, quick, escape, and don't go the wrong way";
+            lname.Text = "";
+            
+
+            MazeForm maze = new MazeForm();
             maze.ShowDialog();
+            if (maze.MazeCompleted)   
+            {
+                this.Close();
+            }
         }
     }
 
