@@ -147,6 +147,11 @@
     <None Include="Resources\IMG_1536.png" />
     <None Include="Resources\Untitled_Artwork %282%29.png" />
     <None Include="Resources\IMG_1535.PNG" />
+    <None Include="Resources\3-2-wrench-picture.png" />
+    <None Include="Resources\battery-icon-3d-rendering-illustration-png.png" />
+    <None Include="Resources\vecteezy_a-flashlight-on-a-transparent-background_55985264.png" />
+    <None Include="Resources\roombg.png" />
+    <None Include="Resources\roombga.png" />
     <Content Include="riddles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -63,6 +63,26 @@ namespace escaping_it.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3_2_wrench_picture {
+            get {
+                object obj = ResourceManager.GetObject("3-2-wrench-picture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap battery_icon_3d_rendering_illustration_png {
+            get {
+                object obj = ResourceManager.GetObject("battery-icon-3d-rendering-illustration-png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button {
             get {
                 object obj = ResourceManager.GetObject("button", resourceCulture);
@@ -143,6 +163,26 @@ namespace escaping_it.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap roombg {
+            get {
+                object obj = ResourceManager.GetObject("roombg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap roombga {
+            get {
+                object obj = ResourceManager.GetObject("roombga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sailing_ship {
             get {
                 object obj = ResourceManager.GetObject("sailing ship", resourceCulture);
@@ -166,6 +206,16 @@ namespace escaping_it.Properties {
         internal static System.Drawing.Bitmap Untitled_Artwork__2_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled_Artwork (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vecteezy_a_flashlight_on_a_transparent_background_55985264 {
+            get {
+                object obj = ResourceManager.GetObject("vecteezy_a-flashlight-on-a-transparent-background_55985264", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

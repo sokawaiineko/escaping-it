@@ -93,11 +93,12 @@
             // 
             // bflashlight
             // 
-            this.bflashlight.Location = new System.Drawing.Point(101, 577);
+            this.bflashlight.BackgroundImage = global::escaping_it.Properties.Resources.vecteezy_a_flashlight_on_a_transparent_background_55985264;
+            this.bflashlight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bflashlight.Location = new System.Drawing.Point(110, 612);
             this.bflashlight.Name = "bflashlight";
-            this.bflashlight.Size = new System.Drawing.Size(144, 35);
+            this.bflashlight.Size = new System.Drawing.Size(113, 77);
             this.bflashlight.TabIndex = 5;
-            this.bflashlight.Text = "flashlight placehold";
             this.bflashlight.UseVisualStyleBackColor = true;
             this.bflashlight.Click += new System.EventHandler(this.bflashlight_Click);
             // 
@@ -124,21 +125,24 @@
             // 
             // bbattery
             // 
-            this.bbattery.Location = new System.Drawing.Point(952, 386);
+            this.bbattery.BackgroundImage = global::escaping_it.Properties.Resources.battery_icon_3d_rendering_illustration_png;
+            this.bbattery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bbattery.Location = new System.Drawing.Point(916, 393);
             this.bbattery.Name = "bbattery";
-            this.bbattery.Size = new System.Drawing.Size(134, 28);
+            this.bbattery.Size = new System.Drawing.Size(63, 62);
             this.bbattery.TabIndex = 8;
-            this.bbattery.Text = "battery placehold";
             this.bbattery.UseVisualStyleBackColor = true;
             this.bbattery.Click += new System.EventHandler(this.bbattery_Click);
             // 
             // bwrench
             // 
+            this.bwrench.BackgroundImage = global::escaping_it.Properties.Resources._3_2_wrench_picture;
+            this.bwrench.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bwrench.Location = new System.Drawing.Point(974, 448);
             this.bwrench.Name = "bwrench";
-            this.bwrench.Size = new System.Drawing.Size(144, 35);
+            this.bwrench.Size = new System.Drawing.Size(112, 70);
             this.bwrench.TabIndex = 9;
-            this.bwrench.Text = "wrench placehold";
+            this.bwrench.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bwrench.UseVisualStyleBackColor = true;
             this.bwrench.Click += new System.EventHandler(this.bwrench_Click);
             // 
@@ -180,7 +184,7 @@
             // 
             this.briddle.BackgroundImage = global::escaping_it.Properties.Resources.Untitled_Artwork__2_;
             this.briddle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.briddle.Location = new System.Drawing.Point(1124, 35);
+            this.briddle.Location = new System.Drawing.Point(1145, 21);
             this.briddle.Name = "briddle";
             this.briddle.Size = new System.Drawing.Size(121, 58);
             this.briddle.TabIndex = 13;
@@ -201,12 +205,11 @@
             // 
             // bescape
             // 
-            this.bescape.Location = new System.Drawing.Point(1136, 95);
+            this.bescape.Location = new System.Drawing.Point(1145, 114);
             this.bescape.Margin = new System.Windows.Forms.Padding(2);
             this.bescape.Name = "bescape";
             this.bescape.Size = new System.Drawing.Size(109, 437);
             this.bescape.TabIndex = 15;
-            this.bescape.Text = "escape maze..";
             this.bescape.UseVisualStyleBackColor = true;
             this.bescape.Click += new System.EventHandler(this.bescape_Click);
             // 
@@ -214,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::escaping_it.Properties.Resources.room_background;
+            this.BackgroundImage = global::escaping_it.Properties.Resources.roombga;
             this.ClientSize = new System.Drawing.Size(1265, 666);
             this.Controls.Add(this.bescape);
             this.Controls.Add(this.briddle);

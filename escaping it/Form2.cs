@@ -31,6 +31,10 @@ namespace escaping_it
             borderless(bSidedoor);
             borderless(bkey);
             borderless(blightsout);
+            borderless(bwrench);
+            borderless(bescape);
+            borderless(bflashlight);
+            borderless(bbattery);
             inventory = new Inventory();
             puzzles = new List<Puzzle>();
             RefreshInventoryUI();
@@ -41,9 +45,6 @@ namespace escaping_it
 
 
 
-            //puzzles.Add(new Puzzle("darkroom", "too dark to see here", new List<String> { "flashlight" }));
-            //puzzles.Add(new Puzzle("broken lightbulb", "needs a bulb to power lights", new List<String> { "working flashlight" }));
-            //puzzles.Add(new Puzzle("door", "a rusty door with a keyhole", new List<String> { "key" }));
 
         }
         private Item firstCombineItem = null;
