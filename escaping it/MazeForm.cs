@@ -7,10 +7,10 @@ namespace escaping_it
 {
     public partial class MazeForm : Form
     {
-        //how many across n down
+        //how maxy across n down
         int col = 31; 
         int row = 31; 
-        int cellSize = 25; 
+        int eachCell = 25; 
         int[,] maze;
         Point player;
         Point goal;
@@ -78,13 +78,14 @@ namespace escaping_it
 
             List<Point> directions = new List<Point>
             {
-                new Point(1, 0),
                 new Point(-1, 0),
-                new Point(0, 1),
-                new Point(0, -1)
+                new Point(1, 0),
+                new Point(0, -1),
+                new Point(0, 1)
+
             };
 
-            //mix directions up
+            //change directions 
             for (int i = 0; i < directions.Count; i++)
             {
                 int r = rng.Next(directions.Count);
@@ -105,7 +106,7 @@ namespace escaping_it
                     maze[x + d.X, y + d.Y] = 0;
 
                     //draws
-                    Invalidate(new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize));
+                    Invalidate(new Rectangle(x * eachCell + 20, y * eachCell + 20, eachCell, eachCell));
                     Update();
                     
 
@@ -116,19 +117,19 @@ namespace escaping_it
        
         private int Shortest()
         {
-            int[,] dist = new int[col, row];
+            int[,] distn = new int[col, row];
 
             for (int x = 0; x < col; x++)
             {
                 for (int y = 0; y < row; y++)
                 {
-                    dist[x, y] = -1;
+                    distn[x, y] = -1;
                 }
             }
 
             Queue<Point> q = new Queue<Point>();
             q.Enqueue(start);
-            dist[start.X, start.Y] = 0;
+            distn[start.X, start.Y] = 0;
 
             int[] dx = { 1, -1, 0, 0 };
             int[] dy = { 0, 0, 1, -1 };
@@ -139,29 +140,29 @@ namespace escaping_it
 
                 if (p == goal)
                 {
-                    return dist[p.X, p.Y];
+                    return distn[p.X, p.Y];
                 }
 
                 for (int i = 0; i < 4; i++)
                 {
-                    int nx = p.X + dx[i];
-                    int ny = p.Y + dy[i];
+                    int xx = p.X + dx[i];
+                    int xy = p.Y + dy[i];
 
-                    if (nx < 0 || ny < 0 || nx >= col || ny >= row)
+                    if (xx < 0 || xy < 0 || xx >= col || xy >= row)
                     {
                         continue;
                     }
 
-                    if (dist[nx, ny] != -1)
+                    if (distn[xx, xy] != -1)
                     {
                         continue;
                     }
-                    if (maze[nx, ny] == 1)
+                    if (maze[xx, xy] == 1)
                     {   
                         continue;
                     }
-                    dist[nx, ny] = dist[p.X, p.Y] + 1;
-                    q.Enqueue(new Point(nx, ny));
+                    distn[xx, xy] = distn[p.X, p.Y] + 1;
+                    q.Enqueue(new Point(xx, xy));
                 }
             }
 
@@ -259,7 +260,7 @@ namespace escaping_it
             {
                 for (int y = 0; y < row; y++)
                 {
-                    Rectangle rect = new Rectangle(x * cellSize + 20, y * cellSize + 20, cellSize, cellSize);
+                    Rectangle rect = new Rectangle(x * eachCell + 20, y * eachCell + 20, eachCell, eachCell);
                     Brush colour = Brushes.SlateBlue;
 
                     if (maze[x, y] == 1)
